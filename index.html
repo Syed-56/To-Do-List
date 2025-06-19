@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List + Pomo</title>
+    <script src="script.js"></script>
 </head>
 <body>
     <h1>ToDo List</h1>
@@ -16,30 +17,5 @@
         <button id="startTimerButton">Start Timer</button>
         <button id="resetTimerButton">Reset Timer</button>
     </div>
-
-    <script>
-        function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            const taskText = taskInput.value.trim();
-            if (taskText === "") {
-                alert("Please enter a task.");
-                return;
-            }
-            const taskList = document.getElementById('taskList');
-            const listItem = document.createElement('li');
-            listItem.textContent = taskText;
-            taskList.appendChild(listItem); // Add the new task to the list
-            document.getElementById('taskInput').value = ""; // Clear the input field
-
-            const tickButton = document.createElement('button');
-            tickButton.textContent = "✓";
-            tickButton.onclick = function() {
-                listItem.style.textDecoration = "line-through"; // Mark task as done
-                tickButton.disabled = true; // Disable the tick button
-            };
-            listItem.appendChild(tickButton); // Add the tick button to the task item
-        }
-
-    </script>
 </body>
 </html>
