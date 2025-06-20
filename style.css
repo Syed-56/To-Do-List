@@ -5,6 +5,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #D2F5C6;
 }
+main {
+    min-height: 100vh;
+}
 
 header, footer {
     display: flex;
