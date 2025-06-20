@@ -12,11 +12,21 @@
         <div class="pomo-heading"><p>Pomo Timer</p></div>
     </header>
     <main>
-        <section>
+        <section class="addTask">
             <div class="input">
                 <input type="text" id="todo-input" placeholder="Add a new task...">
                 <button id="add-task-button">Add Task</button>
             </div>
+        </section>
+        <section id="listOfTasks" class="list-of-tasks">
+            <ul id="taskList">
+                <!-- Tasks will be dynamically added here -->
+                 <div class="task-item">
+                    <li id="task"><button>✓</button> A Task </li>
+                    <button id="button-delete">X</button>
+                 </div>
+                
+            </ul>
         </section>
     </main>
 </body>

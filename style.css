@@ -1,4 +1,4 @@
-* {
+body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -66,6 +66,63 @@ header p {
     transition: background-color 0.3s;
 }
 #add-task-button:hover {
+    background-color: #4b7f5c;
+    transform: scale(1.05);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.list-of-tasks {
+    margin: 20px;
+    padding: 10px;
+    background-color: #D1EFB5;
+}
+.list-of-tasks ul {
+    list-style-type: none;
+    padding: 0;
+}
+.list-of-tasks li {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #E0F2D4;
+    border-radius: 5px;
+}
+.list-of-tasks .task-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;}
+
+#task > button {
+    background-color: #45a049;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: medium;
+}
+.task-item > #button-delete {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: medium;
+}
+.task-item > #button-delete:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+    transition: transform 0.3s, background-color 0.3s;
+}
+#task > button:hover {
     background-color: #4b7f5c;
     transform: scale(1.05);
     transition: transform 0.3s, background-color 0.3s;
