@@ -71,58 +71,39 @@ header p {
     transition: transform 0.3s, background-color 0.3s;
 }
 
-.list-of-tasks {
-    margin: 20px;
-    padding: 10px;
-    background-color: #D1EFB5;
-}
-.list-of-tasks ul {
-    list-style-type: none;
-    padding: 0;
-}
-.list-of-tasks li {
+.task-bar > .container {
     display: flex;
-    flex: 1;
-    justify-content: flex-start;
+    flex-direction: row;
     gap: 20px;
     align-items: center;
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #E0F2D4;
-    border-radius: 5px;
+    justify-content: center;
+    margin: 20px 0;
 }
-.list-of-tasks .task-item {
+.container > input {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #A0A0A0;
+    background-color: #D3FAD6;
+    border-radius: 5px;
+    font-size: medium;
+    color: #333;
+}
+.container > button {
+    display: flex;
     align-items: center;
-    padding: 10px;}
-
-#task > button {
+    justify-content: center;
+    margin: 10px;
+    height: 40px;
     background-color: #45a049;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
     cursor: pointer;
     font-size: medium;
 }
-.task-item > #button-delete {
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: medium;
-}
-.task-item > #button-delete:hover {
-    background-color: darkred;
-    transform: scale(1.05);
-    transition: transform 0.3s, background-color 0.3s;
-}
-#task > button:hover {
+.container > button:hover {
     background-color: #4b7f5c;
     transform: scale(1.05);
     transition: transform 0.3s, background-color 0.3s;
