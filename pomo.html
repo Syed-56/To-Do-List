@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro Timer</title>
+  <style>
+    main {
+      font-family: Arial, sans-serif;
+      background-color: #D2F5C6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    #timer {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: bisque;
+      border: none;
+      color: white;
+      border-radius: 10px;
+    }
+    #mode {
+      margin-top: 20px;
+      font-size: 44px;
+      margin-bottom: 10px;
+      color: aliceblue;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="todo-list-heading" id="TodoList"><p>To-Do List</p></div>
+        <div class="pomo-heading" id="#pomoPage"><p>Pomo Timer</p></div>
+    </header>
+
+  <main>
+    <div id="mode">Pomodoro</div>
+    <div id="timer" style="color: white;">25:00</div>
+
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+  </main>
+
+  <script>
+    let isBreak = false;
+    let pomodoroTime = 25 * 60; // 25 minutes
+    let breakTime = 5 * 60;     // 5 minutes
+    let timeLeft = pomodoroTime;
+    let timer;
+    let isRunning = false;
+
+    function updateDisplay() {
+      const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      const seconds = String(timeLeft % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+      document.getElementById('mode').textContent = isBreak ? "Break" : "Pomodoro";
+    }
+
+    function startTimer() {
+      if (isRunning) return;
+      isRunning = true;
+      timer = setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          updateDisplay();
+        } else {
+          clearInterval(timer);
+          isRunning = false;
+          isBreak = !isBreak;
+          timeLeft = isBreak ? breakTime : pomodoroTime;
+          startTimer();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timer);
+      isRunning = false;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      isBreak = false;
+      timeLeft = pomodoroTime;
+      updateDisplay();
+    }
+
+    updateDisplay(); // initial display
+  </script>
+<script src="script.js"></script>
+</body>
+</html>

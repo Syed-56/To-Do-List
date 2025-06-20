@@ -8,8 +8,8 @@
 </head>
 <body>
     <header>
-        <div class="todo-list-heading"><p>To-Do List</p></div>
-        <div class="pomo-heading"><p>Pomo Timer</p></div>
+        <div class="todo-list-heading" id="TodoList"><p>To-Do List</p></div>
+        <div class="pomo-heading" id="#pomoPage"><p>Pomo Timer</p></div>
     </header>
     <main>
         <section class="task-bar" id="taskBar">
@@ -18,7 +18,19 @@
                 <button class="add-task-button" id="addTaskButton" onclick="addTask()">Add Task</button>
             </div>
         </section>
-        
+        <section class="task-list" id="taskList">
+            <ul id="tasks">
+                <!-- Tasks will be dynamically added here -->
+                <li class="task-item"> 
+                    <button class="completeTaskButton" onclick="removeTask()">✓</button> Sample Task <button class="removeTaskButton" onclick="removeTask()">x</button>
+                </li>
+                <li class="task-item"> 
+                    <button class="completeTaskButton" onclick="removeTask()">✓</button> Another Task <button class="removeTaskButton" onclick="removeTask()">x</button>
+                </li>
+            </ul>
+        </section>
     </main>
+    <script src="script.js"></script>
+
 </body>
 </html>
