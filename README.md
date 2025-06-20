@@ -37,8 +37,3 @@ This application combines a task management system with a productivity-focused P
    - Use "Pause" to temporarily stop the timer
    - Click "Reset" to return to 25:00
    - The timer automatically switches between work and break periods
-
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
