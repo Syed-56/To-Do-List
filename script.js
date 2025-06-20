@@ -54,3 +54,48 @@ function removeTask() {
         }
     });
 }
+
+let isBreak = false;
+    let pomodoroTime = 25 * 60; // 25 minutes
+    let breakTime = 5 * 60;     // 5 minutes
+    let timeLeft = pomodoroTime;
+    let timer;
+    let isRunning = false;
+
+    function updateDisplay() {
+      const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      const seconds = String(timeLeft % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+      document.getElementById('mode').textContent = isBreak ? "Break" : "Pomodoro";
+    }
+
+    function startTimer() {
+      if (isRunning) return;
+      isRunning = true;
+      timer = setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          updateDisplay();
+        } else {
+          clearInterval(timer);
+          isRunning = false;
+          isBreak = !isBreak;
+          timeLeft = isBreak ? breakTime : pomodoroTime;
+          startTimer();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timer);
+      isRunning = false;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      isBreak = false;
+      timeLeft = pomodoroTime;
+      updateDisplay();
+    }
+
+    updateDisplay(); // initial display
