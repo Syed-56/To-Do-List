@@ -1,141 +1,222 @@
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --primary: #6c5ce7;
+  --secondary: #00cec9;
+  --accent: #fd79a8;
+  --card-bg: #2d3436;
+}
+
+/* Video Background */
 body {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #D2F5C6;
-}
-main {
-    min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
+.video-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+  filter: brightness(0.7);
+  object-fit: cover;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.75);
+  min-height: 100vh;
+}
+
+/* Header */
 header {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 20px 20px;
-    font-size: large;
-    font-weight: bold;
-    color: white;
-    background-color: #EDEBA0;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: transparent;
 }
+
 header > div {
-    flex: 1;
-    text-align: center;
-    max-width: 40%;
-    padding: 10px;
-    color: white;
-    background-color: #C3C48D;
-    border: 0.5px solid #A0A0A0;
-    border-radius: 10px;
-    word-spacing: 10px;
-    letter-spacing: 5px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
 }
+
 header > div:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: transform 0.3s;
-}
-header p {
-    background-color: #C3C48D;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-#add-task-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 18px 20px;
-    height: 50px;
-    background-color: #45a049;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: medium;
-    transition: background-color 0.3s;
-}
-#add-task-button:hover {
-    background-color: #4b7f5c;
-    transform: scale(1.05);
-    transition: transform 0.3s, background-color 0.3s;
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.task-bar > .container {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
+/* Task Input */
+.task-input-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
-.container > input {
-    display: flex;
-    flex: 1;
-    max-width: 60%;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #A0A0A0;
-    background-color: #D3FAD6;
-    border-radius: 5px;
-    font-size: medium;
-    color: #333;
+
+#taskInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.3s ease;
 }
-.container > button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    height: 40px;
-    background-color: #45a049;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: border-color 0.3s;
-    cursor: pointer;
-    font-size: medium;
+
+#taskInput:focus {
+  box-shadow: 0 0 0 2px var(--primary);
 }
-.container > button:hover {
-    background-color: #4b7f5c;
-    transform: scale(1.05);
-    transition: transform 0.3s, background-color 0.3s;
+
+#addTaskButton {
+  padding: 0 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+
+#addTaskButton:hover {
+  background: #5649c0;
+  transform: translateY(-1px);
 }
-#tasks > li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin: 20px auto;
-    max-width: 50%;
-    background-color: #EDEBA0;
-    border-radius: 5px;
-    border: 1px solid #A0A0A0;
+
+/* Task List */
+#tasks {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
-#tasks > li > button {
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: medium;
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--card-bg);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
 }
-.removeTaskButton {
-    background-color: #d9534f;
+
+.task-item:hover {
+  transform: translateX(5px);
 }
-.removeTaskButton:hover {
-    background-color: #c9302c;
-    transform: scale(1.05);
-    transition: transform 0.3s, background-color 0.3s;
+
+.task-text {
+  flex: 1;
+  margin: 0 1rem;
 }
+
+.completeTaskButton, .removeTaskButton {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 .completeTaskButton {
-    background-color: #5cb85c;
+  background: var(--secondary);
+  color: var(--bg-color);
 }
+
+.removeTaskButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+}
+
 .completeTaskButton:hover {
-    background-color: #4b7f5c;
-    transform: scale(1.05);
-    transition: transform 0.3s, background-color 0.3s;
+  background: #00a8a5;
+  transform: scale(1.1);
+}
+
+.removeTaskButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Timer Styles */
+#timer {
+  font-size: 5rem;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+#mode {
+  font-size: 1.25rem;
+  text-align: center;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.timer-controls button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timer-controls button:hover {
+  background: #5649c0;
+  transform: translateY(-1px);
+}
+
+.sound-controls {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+#soundToggle {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#soundToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
 }

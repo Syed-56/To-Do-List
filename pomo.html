@@ -2,106 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pomodoro Timer</title>
-  <style>
-    main {
-      font-family: Arial, sans-serif;
-      background-color: #D2F5C6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 20px;
-      min-height: 100vh;
-      text-align: center;
-    }
-  
-    #timer {
-      font-size: 64px;
-      margin-bottom: 20px;
-      color: white;
-    }
-  
-    button {
-      font-size: 50px;
-      padding: 10px 20px;
-      margin: 5px;
-      cursor: pointer;
-      background-color: bisque;
-      border: none;
-      color: white;
-      border-radius: 10px;
-    }
-    button:hover {
-      background-color: #FFB74D;
-      transform: scale(1.05);
-      transition: transform 0.3s;
-    }
-  
-    #mode {
-      font-size: 50px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: aliceblue;
-    }
-  
-    header {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px;
-      background-color: #A5D6A7;
-      flex-wrap: wrap;
-    }
-  
-    .todo-list-heading, .pomo-heading {
-      flex: 1 1 100%;
-      text-align: center;
-      margin: 10px 0;
-    }
-  
-    /* Responsive Styles */
-    @media (max-width: 600px) {
-      #timer {
-        font-size: 48px;
-      }
-  
-      button {
-        font-size: medium;
-        padding: 8px 16px;
-      }
-  
-    }
-  
-    @media (max-width: 400px) {
-      #timer {
-        font-size: 36px;
-      }
-  
-      button {
-        width: 100%;
-        max-width: 200px;
-      }
-    }
-  </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus | Timer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <video class="video-background" autoplay muted loop>
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-rain-on-the-window-of-a-coffee-shop-1259-large.mp4" type="video/mp4">
+  </video>
+  
+  <div class="content-wrapper">
     <header>
-        <div class="todo-list-heading" id="TodoList"><p>To-Do List</p></div>
-        <div class="pomo-heading" id="#pomoPage"><p>Pomo Timer</p></div>
+      <div class="todo-list-heading">Todo</div>
+      <div class="pomo-heading">Timer</div>
     </header>
-
-  <main>
-    <div id="mode">Pomodoro</div>
-    <div id="timer" style="color: white;">25:00</div>
-
-    <button onclick="startTimer()">Start</button>
-    <button onclick="pauseTimer()">Pause</button>
-    <button onclick="resetTimer()">Reset</button>
-  </main>
-<script src="script.js"></script>
+    <main>
+      <div id="mode">Focus</div>
+      <div id="timer">25:00</div>
+      <div class="timer-controls">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
+      <div class="sound-controls">
+        <button id="soundToggle">🔇 Ambient Sound</button>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
