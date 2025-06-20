@@ -9,7 +9,7 @@ main {
     min-height: 100vh;
 }
 
-header, footer {
+header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
