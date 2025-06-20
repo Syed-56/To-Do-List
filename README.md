@@ -25,10 +25,6 @@ This application combines a task management system with a productivity-focused P
 - CSS3 (with responsive design)
 - JavaScript (DOM manipulation, event handling, timer logic)
 
-## Installation
-
-No installation required - simply open `index.html` in any modern web browser.
-
 ## Usage
 
 1. **Todo List** (index.html):
@@ -42,26 +38,6 @@ No installation required - simply open `index.html` in any modern web browser.
    - Click "Reset" to return to 25:00
    - The timer automatically switches between work and break periods
 
-
-## Browser Support
-
-The application is compatible with all modern browsers including:
-- Chrome
-- Firefox
-- Safari
-- Edge
-
-## Future Enhancements
-
-- Task persistence using localStorage
-- Customizable timer durations
-- Task priority system
-- Dark mode support
-- Audio notifications for timer completion
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
 
 ## License
 
