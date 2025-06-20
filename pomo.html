@@ -11,13 +11,19 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      padding: 20px;
+      min-height: 100vh;
+      text-align: center;
     }
+  
     #timer {
       font-size: 64px;
       margin-bottom: 20px;
+      color: white;
     }
+  
     button {
-      font-size: 38px;
+      font-size: large;
       padding: 10px 20px;
       margin: 5px;
       cursor: pointer;
@@ -26,13 +32,53 @@
       color: white;
       border-radius: 10px;
     }
+  
     #mode {
-      margin-top: 20px;
-      font-size: 64px;
+      font-size: 50px;
       margin-bottom: 10px;
       color: aliceblue;
     }
+  
+    header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px;
+      background-color: #A5D6A7;
+      flex-wrap: wrap;
+    }
+  
+    .todo-list-heading, .pomo-heading {
+      flex: 1 1 100%;
+      text-align: center;
+      margin: 10px 0;
+    }
+  
+    /* Responsive Styles */
+    @media (max-width: 600px) {
+      #timer {
+        font-size: 48px;
+      }
+  
+      button {
+        font-size: medium;
+        padding: 8px 16px;
+      }
+  
+    }
+  
+    @media (max-width: 400px) {
+      #timer {
+        font-size: 36px;
+      }
+  
+      button {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
   </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -50,6 +96,17 @@
     <button onclick="pauseTimer()">Pause</button>
     <button onclick="resetTimer()">Reset</button>
   </main>
+  <footer id="footer">
+    <div class="name">
+        <p>Syed Sultan Ahmed</p>
+        <p>&copy; 2023 Syed Sultan Ahmed. All rights reserved.</p>
+    </div>
+    <div class="Contact">
+        <p><i class="fas fa-envelope"></i>  ssa.56.sultan@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +92 300 1234567</p>
+        <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
+    </div>
+    </footer>
 <script src="script.js"></script>
 </body>
 </html>
