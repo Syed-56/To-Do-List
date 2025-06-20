@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List + Pomo</title>
-    <script src="script.js"></script>
+    <title>Todo List + Pomo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>ToDo List</h1>
-    <input type="text" id="taskInput" placeholder="Add a new task">
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
-    <h2>Pomodoro Timer</h2>
-    <div>
-        <span id="timerDisplay">25:00</span>
-        <button id="startTimerButton">Start Timer</button>
-        <button id="resetTimerButton">Reset Timer</button>
-    </div>
+    <header>
+        <div class="todo-list-heading"><p>To-Do List</p></div>
+        <div class="pomo-heading"><p>Pomo Timer</p></div>
+    </header>
+    <main>
+        <section>
+            <div class="input">
+                <input type="text" id="todo-input" placeholder="Add a new task...">
+                <button id="add-task-button">Add Task</button>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
