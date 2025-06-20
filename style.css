@@ -1,222 +1,141 @@
-:root {
-  --bg-color: #1a1a1a;
-  --text-color: #f0f0f0;
-  --primary: #6c5ce7;
-  --secondary: #00cec9;
-  --accent: #fd79a8;
-  --card-bg: #2d3436;
-}
-
-/* Video Background */
 body {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
-  color: var(--text-color);
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #D2F5C6;
 }
-
-.video-background {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  opacity: 0.5;
-  filter: brightness(0.7);
-  object-fit: cover;
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.75);
-  min-height: 100vh;
-}
-
-/* Header */
-header {
-  padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  background: transparent;
-}
-
-header > div {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background: rgba(0, 0, 0, 0.3);
-  color: white;
-}
-
-header > div:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
 main {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
+  min-height: 100vh;
 }
 
-/* Task Input */
-.task-input-container {
+header {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 20px;
+  font-size: large;
+  font-weight: bold;
+  color: white;
+  background-color: #EDEBA0;
 }
-
-#taskInput {
+header > div {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  background: var(--card-bg);
-  color: var(--text-color);
-  font-size: 1rem;
-  outline: none;
-  transition: box-shadow 0.3s ease;
+  text-align: center;
+  max-width: 40%;
+  padding: 10px;
+  color: white;
+  background-color: #C3C48D;
+  border: 0.5px solid #A0A0A0;
+  border-radius: 10px;
+  word-spacing: 10px;
+  letter-spacing: 5px;
+}
+header > div:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+header p {
+  background-color: #C3C48D;
 }
 
-#taskInput:focus {
-  box-shadow: 0 0 0 2px var(--primary);
-}
-
-#addTaskButton {
-  padding: 0 1.5rem;
-  background: var(--primary);
+#add-task-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 20px;
+  height: 50px;
+  background-color: #45a049;
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: medium;
+  transition: background-color 0.3s;
+}
+#add-task-button:hover {
+  background-color: #4b7f5c;
+  transform: scale(1.05);
+  transition: transform 0.3s, background-color 0.3s;
 }
 
-#addTaskButton:hover {
-  background: #5649c0;
-  transform: translateY(-1px);
+.task-bar > .container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
 }
-
-/* Task List */
-#tasks {
-  padding: 0;
+.container > input {
+  display: flex;
+  flex: 1;
+  max-width: 60%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #A0A0A0;
+  background-color: #D3FAD6;
+  border-radius: 5px;
+  font-size: medium;
+  color: #333;
+}
+.container > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  height: 40px;
+  background-color: #45a049;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+  cursor: pointer;
+  font-size: medium;
+}
+.container > button:hover {
+  background-color: #4b7f5c;
+  transform: scale(1.05);
+  transition: transform 0.3s, background-color 0.3s;
+}
+ul {
   margin: 0;
+  padding: 0;
   list-style: none;
 }
-
-.task-item {
+#tasks > li {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  background: var(--card-bg);
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 50%;
+  background-color: #EDEBA0;
+  border-radius: 5px;
+  border: 1px solid #A0A0A0;
 }
-
-.task-item:hover {
-  transform: translateX(5px);
-}
-
-.task-text {
-  flex: 1;
-  margin: 0 1rem;
-}
-
-.completeTaskButton, .removeTaskButton {
-  width: 28px;
-  height: 28px;
+#tasks > li > button {
+  color: white;
   border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: medium;
 }
-
-.completeTaskButton {
-  background: var(--secondary);
-  color: var(--bg-color);
-}
-
 .removeTaskButton {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-color);
+  background-color: #d9534f;
 }
-
-.completeTaskButton:hover {
-  background: #00a8a5;
-  transform: scale(1.1);
-}
-
 .removeTaskButton:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
+  background-color: #c9302c;
+  transform: scale(1.05);
+  transition: transform 0.3s, background-color 0.3s;
 }
-
-/* Timer Styles */
-#timer {
-  font-size: 5rem;
-  font-weight: 300;
-  letter-spacing: -0.05em;
-  margin: 2rem 0;
-  text-align: center;
+.completeTaskButton {
+  background-color: #5cb85c;
 }
-
-#mode {
-  font-size: 1.25rem;
-  text-align: center;
-  opacity: 0.8;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.timer-controls {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.timer-controls button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  background: var(--primary);
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.timer-controls button:hover {
-  background: #5649c0;
-  transform: translateY(-1px);
-}
-
-.sound-controls {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-#soundToggle {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#soundToggle:hover {
-  background: rgba(255, 255, 255, 0.1);
+.completeTaskButton:hover {
+  background-color: #4b7f5c;
+  transform: scale(1.05);
+  transition: transform 0.3s, background-color 0.3s;
 }

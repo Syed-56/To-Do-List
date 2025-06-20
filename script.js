@@ -1,130 +1,101 @@
-// Video Background Handling
-const videoBackground = document.querySelector('.video-background');
-if (videoBackground) {
-  videoBackground.play().catch(error => {
-    console.log("Video autoplay prevented:", error);
-  });
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      videoBackground.pause();
-    } else {
-      videoBackground.play();
-    }
-  });
-}
-
-// Navigation
-document.querySelector('.todo-list-heading').addEventListener('click', () => {
+document.querySelector('.todo-list-heading').addEventListener('click', function() {
   window.location.href = 'index.html';
 });
-
-document.querySelector('.pomo-heading').addEventListener('click', () => {
+document.querySelector('.pomo-heading').addEventListener('click', function() {
   window.location.href = 'pomo.html';
 });
 
-// Todo List Functionality
 const inputText = document.getElementById('taskInput');
-const addButton = document.getElementById('addTaskButton');
+console.log("Input field:", inputText.value);
 
 function addTask() {
   const taskContent = inputText.value.trim();
-  if (!taskContent) return;
+  if (taskContent === '') {
+      alert('Please enter a task.');
+      return;
+  }
+  else {
+      const taskList = document.getElementById('tasks');
+      const task = document.createElement('li');
+      const taskTextNode = document.createTextNode(taskContent);
+      task.setAttribute('class', 'task-item');
+      const tickButton = document.createElement('button');
+      tickButton.setAttribute('class',"completeTaskButton");
+      tickButton.textContent = '✓';
+      const crossButton = document.createElement('button');
+      tickButton.setAttribute('onclick', 'removeTask()');
+      crossButton.setAttribute('onclick', 'removeTask()');
+      crossButton.setAttribute('class',"removeTaskButton");
 
+      crossButton.textContent = 'x';
+      task.appendChild(tickButton);
+      task.appendChild(taskTextNode);
+      task.appendChild(crossButton);
+      console.log("Creating task:", taskContent);
+      taskList.appendChild(task);
+      console.log("Task added:", taskContent);
+      
+      inputText.value = ''; // Clear the input field after adding the task
+  }
+  inputText.focus(); // Keep focus on the input field
+}
+function removeTask() {
   const taskList = document.getElementById('tasks');
-  const task = document.createElement('li');
-  task.className = 'task-item';
-
-  task.innerHTML = `
-    <button class="completeTaskButton">✓</button>
-    <span class="task-text">${taskContent}</span>
-    <button class="removeTaskButton">×</button>
-  `;
-
-  task.querySelector('.completeTaskButton').addEventListener('click', () => {
-    task.classList.add('completed');
-    setTimeout(() => task.remove(), 300);
+  taskList.addEventListener('click', function(event) {
+      if (event.target.classList.contains('removeTaskButton')) {
+          const taskItem = event.target.parentElement;
+          console.log("Removing task:", taskItem.textContent);
+          taskList.removeChild(taskItem);
+      }
+      else if (event.target.classList.contains('completeTaskButton')) {
+          const taskItem = event.target.parentElement;
+          console.log("Removing task:", taskItem.textContent);
+          taskList.removeChild(taskItem);
+      }
   });
-
-  task.querySelector('.removeTaskButton').addEventListener('click', () => {
-    task.remove();
-  });
-
-  taskList.appendChild(task);
-  inputText.value = '';
-  inputText.focus();
 }
 
-if (inputText && addButton) {
-  inputText.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addTask();
-  });
-
-  addButton.addEventListener('click', addTask);
-}
-
-// Pomodoro Timer
 let isBreak = false;
-let pomodoroTime = 25 * 60;
-let breakTime = 5 * 60;
-let timeLeft = pomodoroTime;
-let timer;
-let isRunning = false;
+  let pomodoroTime = 25 * 60; // 25 minutes
+  let breakTime = 5 * 60;     // 5 minutes
+  let timeLeft = pomodoroTime;
+  let timer;
+  let isRunning = false;
 
-function updateDisplay() {
-  if (!document.getElementById('timer')) return;
-  
-  const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-  const seconds = String(timeLeft % 60).padStart(2, '0');
-  document.getElementById('timer').textContent = `${minutes}:${seconds}`;
-  document.getElementById('mode').textContent = isBreak ? "Break" : "Focus";
-}
+  function updateDisplay() {
+    const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+    const seconds = String(timeLeft % 60).padStart(2, '0');
+    document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+    document.getElementById('mode').textContent = isBreak ? "Break" : "Pomodoro";
+  }
 
-function startTimer() {
-  if (isRunning) return;
-  isRunning = true;
-  
-  timer = setInterval(() => {
-    if (timeLeft > 0) {
-      timeLeft--;
-      updateDisplay();
-    } else {
-      clearInterval(timer);
-      isRunning = false;
-      isBreak = !isBreak;
-      timeLeft = isBreak ? breakTime : pomodoroTime;
-      updateDisplay();
-    }
-  }, 1000);
-}
+  function startTimer() {
+    if (isRunning) return;
+    isRunning = true;
+    timer = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        updateDisplay();
+      } else {
+        clearInterval(timer);
+        isRunning = false;
+        isBreak = !isBreak;
+        timeLeft = isBreak ? breakTime : pomodoroTime;
+        startTimer();
+      }
+    }, 1000);
+  }
 
-function pauseTimer() {
-  clearInterval(timer);
-  isRunning = false;
-}
+  function pauseTimer() {
+    clearInterval(timer);
+    isRunning = false;
+  }
 
-function resetTimer() {
-  pauseTimer();
-  isBreak = false;
-  timeLeft = pomodoroTime;
-  updateDisplay();
-}
+  function resetTimer() {
+    pauseTimer();
+    isBreak = false;
+    timeLeft = pomodoroTime;
+    updateDisplay();
+  }
 
-// Ambient Sound Control
-const soundToggle = document.getElementById('soundToggle');
-if (soundToggle) {
-  const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-rain-and-thunder-storm-2390.mp3');
-  audio.loop = true;
-  let soundOn = false;
-  
-  soundToggle.addEventListener('click', () => {
-    soundOn = !soundOn;
-    soundToggle.textContent = soundOn ? "🔊 Ambient Sound" : "🔇 Ambient Sound";
-    soundOn ? audio.play() : audio.pause();
-  });
-}
-
-// Initialize
-if (document.getElementById('timer')) {
-  updateDisplay();
-}
+  updateDisplay(); // initial display
